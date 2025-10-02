@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>NL Locator Finder (Chrome Render)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="/assets/styles.css"/>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🧭 NL Locator Finder</h1>
+    <p class="muted">Keeps the UI page in place. No reload between queries.</p>
+  </header>
+
+  <!-- NOTE: intentionally NOT a <form> to avoid implicit submit -->
+  <section class="card" id="controls">
+    <div class="form-grid">
+      <div>
+        <label>Page URL</label>
+        <input id="url" placeholder="https://example.com/login" autocomplete="off"/>
+      </div>
+      <div>
+        <label>Natural language query</label>
+        <input id="query" placeholder="enter Surya in Username" autocomplete="off"/>
+      </div>
+    </div>
+
+    <div class="split">
+      <div>
+        <label>Or paste HTML</label>
+        <textarea id="html" placeholder="Paste page source if not using URL"></textarea>
+      </div>
+      <div class="actions">
+        <label style="display:flex;align-items:center;gap:6px;">
+          <input type="checkbox" id="useChrome"/> Use Chrome (render & highlight)
+        </label>
+        <label class="small muted" style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
+          Wait for selector (optional)
+          <input id="waitSelector" placeholder=".app-ready or #root" autocomplete="off"/>
+        </label>
+
+        <!-- type='button' prevents form submit -->
+        <button id="runBtn" type="button">Find Locator</button>
+        <button id="exportBtn" type="button" class="ghost" disabled>Export JSON</button>
+        <div id="status" class="muted small"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Best Match</h2>
+      <div id="best"><div class="muted">Run a query to see results.</div></div>
+    </div>
+    <div class="card">
+      <h2>Top Candidates</h2>
+     <table id="candidates">
+      <thead>
+        <tr>
+          <th>Score</th>
+          <th>Tag</th>
+          <th>Text</th>
+          <th>Locator</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    </div>
+  </section>
+
+  <section class="card" id="previewCard">
+    <h2>Preview</h2>
+    <div id="previewNote" class="muted small"></div>
+    <iframe id="preview"></iframe>
+  </section>
+
+  <footer>
+    <span class="muted small">Tip: Press Enter in the query field to run without reloading.</span>
+  </footer>
+</div>
+
+<script src="/assets/main.js?v=6"></script>
+</body>
+</html>
