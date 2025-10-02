@@ -19,7 +19,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ---------- Filesystem-based mount (bullet-proof) ----------
 BASE_DIR = Path(__file__).parent.resolve()          # .../nl-locator-finder-server/app
 ASSETS_DIR = (BASE_DIR / "assets").resolve()        # .../nl-locator-finder-server/app/assets
 INDEX_HTML = ASSETS_DIR / "index.html"
@@ -31,7 +30,6 @@ print(f"[startup] INDEX_HTML = {INDEX_HTML} (exists: {INDEX_HTML.exists()})")
 # Serve assets at /assets/*
 app.mount("/assets", StaticFiles(directory=str(ASSETS_DIR), html=False), name="assets")
 
-# Optional: legacy redirect if your HTML still points to /static/*
 from fastapi.responses import RedirectResponse
 @app.get("/static/{path:path}")
 def legacy_static(path: str):
