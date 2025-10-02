@@ -248,14 +248,6 @@ Click “Export JSON” → downloads `locator-candidates.json`:
 }
 ```
 
----
-
-## 📜 License
-
-MIT (customize if needed)
-
----
-
 ## 🤝 Contributing
 
 PRs welcome!
